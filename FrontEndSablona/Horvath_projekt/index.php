@@ -1,13 +1,13 @@
 <?php
-session_start(); // Start the session if you haven't already on the page.
+session_start(); // Start the session
 
-// Check if the session variable for admin is set and true.
 if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
-    // Include the admin header.
     include('../../parts/admin_header.php');
+} elseif (isset($_SESSION['is_user']) && $_SESSION['is_user']) {
+    include('../../parts/user_header.php');
 } else {
-    // Include the default header.
-    include '../../parts/header.php';}
+    include('../../parts/header.php');
+}
 ?>
 
     <div class="ic">

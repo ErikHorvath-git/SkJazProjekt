@@ -43,13 +43,19 @@
                     <li class="nav-item">
                         <a href="o_nas.php" class="nav-link">O NÁS</a>
                     </li>
-                  
-                    <li class="nav-item">
-                        <a href="admin_panel.php" class="nav-link">ADMIN PANEL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="logout.php" class="nav-link">LOGOUT</a>
-                    </li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <li class="nav-item">
+                            Logged in as <?= htmlspecialchars($_SESSION['username']) ?>
+                            <?php if ($_SESSION['is_admin']): ?>
+                                (Admin)
+                            <?php else: ?>
+                                (User)
+                            <?php endif; ?>
+                        </li>
+                        <li class="nav-item">
+                            <a href="logout.php" class="nav-link">LOGOUT</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -76,3 +82,5 @@
             </svg>  
         </div>
     </header>
+</body>
+</html>

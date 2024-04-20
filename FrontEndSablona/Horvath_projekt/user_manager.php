@@ -18,7 +18,6 @@ class UserManager {
     }
 
     public function login($username, $password) {
-        // Attempt to log in as a regular user
         $stmt = $this->pdo->prepare("SELECT password FROM users WHERE username = :username");
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch();
@@ -27,10 +26,13 @@ class UserManager {
             session_start();
             $_SESSION['username'] = $username;
             $_SESSION['is_admin'] = false;
+            $_SESSION['is_user'] =true; 
+            header("Location: index.php");
             return 'user';
+            exit();
+            
         }
     
-        // If not found in users, check if the user is an admin
         $stmt = $this->pdo->prepare("SELECT password FROM admin WHERE username = :username");
         $stmt->execute(['username' => $username]);
         $admin = $stmt->fetch();
@@ -40,12 +42,10 @@ class UserManager {
             $_SESSION['username'] = $username;
             $_SESSION['is_admin'] = true;
     
-            // Redirect to index.php if the user is an admin
             header("Location: index.php");
             exit();
         }
     
-        // Return false if the login is unsuccessful for both user and admin
         return false;
     }
     

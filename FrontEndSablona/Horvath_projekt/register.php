@@ -5,19 +5,18 @@ $message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
-    $isAdmin = isset($_POST['admin']); // Check if admin checkbox is checked
+    $isAdmin = isset($_POST['admin']); // Check if admin 
 
     if (!empty($username) && !empty($password)) {
         $userManager = new UserManager();
         if ($isAdmin) {
-            // If the admin checkbox is checked, register as admin
+            // If the admin checkbox is checked
             if ($userManager->registerAdmin($username, $password)) {
                 $message = "Admin registered successfully!";
             } else {
                 $message = "Failed to register admin.";
             }
         } else {
-            // If the admin checkbox is not checked, register as a regular user
             if ($userManager->register($username, $password)) {
                 $message = "User registered successfully!";
             } else {
