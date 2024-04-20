@@ -5,13 +5,24 @@ $message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
+    $isAdmin = isset($_POST['admin']); // Check if admin checkbox is checked
 
     if (!empty($username) && !empty($password)) {
         $userManager = new UserManager();
-        if ($userManager->register($username, $password)) {
-            $message = "User registered successfully!";
+        if ($isAdmin) {
+            // If the admin checkbox is checked, register as admin
+            if ($userManager->registerAdmin($username, $password)) {
+                $message = "Admin registered successfully!";
+            } else {
+                $message = "Failed to register admin.";
+            }
         } else {
-            $message = "Failed to register user.";
+            // If the admin checkbox is not checked, register as a regular user
+            if ($userManager->register($username, $password)) {
+                $message = "User registered successfully!";
+            } else {
+                $message = "Failed to register user.";
+            }
         }
     } else {
         $message = "Username and password cannot be empty.";
@@ -32,8 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post">
         Username: <input type="text" name="username" required>
         Password: <input type="password" name="password" required>
+        <label>
+            Admin: <input type="checkbox" name="admin">
+        </label>
         <input type="submit" value="Register">
     </form>
 </body>
 </html>
-

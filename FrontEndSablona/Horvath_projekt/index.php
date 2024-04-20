@@ -1,4 +1,14 @@
-<?php include '../../parts/header.php'; ?>
+<?php
+session_start(); // Start the session if you haven't already on the page.
+
+// Check if the session variable for admin is set and true.
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+    // Include the admin header.
+    include('../../parts/admin_header.php');
+} else {
+    // Include the default header.
+    include '../../parts/header.php';}
+?>
 
     <div class="ic">
         <ul class="nav__icons">

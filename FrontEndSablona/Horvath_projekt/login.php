@@ -1,7 +1,7 @@
 <?php
 require_once 'user_manager.php';  
 
-session_start();  // It's a good practice to start the session at the beginning of the script
+session_start();  
 
 $message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($password)) {
         $userManager = new UserManager();
         if ($userManager->login($username, $password)) {
-            $_SESSION['username'] = $username;  // Store username in session variable
-            header("Location: index.php");  // Redirect to 'index.php' after login
-            exit();  // Always call exit after header redirection to stop script execution
+            $_SESSION['username'] = $username;  
+            header("Location: index.php");  
+            exit();  
         } else {
-            $message = "Invalid username or password.";  // Provide feedback for failed login
+            $message = "Invalid username or password.";  
         }
     } else {
-        $message = "Both username and password are required.";  // Feedback for empty fields
+        $message = "Both username and password are required.";  
     }
 }
 ?>
