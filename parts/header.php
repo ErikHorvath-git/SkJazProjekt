@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a href="o_nas.php" class="nav-link">O NÁS</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="register.php" class="nav-link">REGISTROVAŤ SA</a>
+                    </li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
