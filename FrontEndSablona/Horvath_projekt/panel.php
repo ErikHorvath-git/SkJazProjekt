@@ -31,7 +31,7 @@ class ProductManager {
     }
 
     public function createProduct($name, $price, $picture, $description) {
-        $blob = fopen($picture['tmp_name'], 'rb'); // open file in read-binary
+        $blob = fopen($picture['tmp_name'], 'rb'); //  read-binary
         $stmt = $this->pdo->prepare("INSERT INTO products (name, price, picture, description) VALUES (?, ?, ?, ?)");
         $stmt->bindParam(1, $name);
         $stmt->bindParam(2, $price);
@@ -41,7 +41,7 @@ class ProductManager {
     }
     
     public function updateProduct($id, $name, $price, $picture, $description) {
-        $blob = fopen($picture['tmp_name'], 'rb'); // open file in read-binary 
+        $blob = fopen($picture['tmp_name'], 'rb'); // read-binary 
         $stmt = $this->pdo->prepare("UPDATE products SET name = ?, price = ?, picture = ?, description = ? WHERE id = ?");
         $stmt->bindParam(1, $name);
         $stmt->bindParam(2, $price);
