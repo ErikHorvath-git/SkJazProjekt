@@ -15,15 +15,15 @@ include '../../parts/header.php';
         <div class="shop-content">
             <?php foreach ($products as $product): ?>
                 <div class="product-box">
-                    <img src="data:image/jpeg;base64,<?= base64_encode($product['picture']) ?>" 
-                         alt="<?= htmlspecialchars($product['name']) ?>" class="product-img">
-                    <h2 class="product-title"><?= htmlspecialchars($product['name']) ?></h2>
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($product['picture']); ?>" 
+                         alt="<?php echo htmlspecialchars($product['name']); ?>" class="product-img">
+                    <h2 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h2>
                     <form action="add_to_cart.php" method="post">
-                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="image" id="kosikkk" src="img/kosik.png" class="add-cart" alt="Add to cart">
                     </form>
-                    <span class="price"><?= htmlspecialchars(number_format($product['price'], 2)) ?>€</span>
-                    <p class="product-text"><?= htmlspecialchars($product['description']) ?></p>
+                    <span class="price"><?php echo htmlspecialchars(number_format($product['price'], 2)); ?>€</span>
+                    <p class="product-text"><?php echo htmlspecialchars($product['description']); ?></p>
                 </div>
             <?php endforeach; ?>
         </div>

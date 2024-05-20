@@ -4,6 +4,7 @@ require_once 'panel.php';
 $manager = new ProductManager();
 $products = $manager->listProducts(); 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,22 +16,22 @@ $products = $manager->listProducts();
 <table>
     <?php foreach ($products as $product): ?>
     <tr>
-        <td><?= htmlspecialchars($product['name']) ?> ($<?= htmlspecialchars($product['price']) ?>)</td>
-        <td><img src="data:image/jpeg;base64,<?= base64_encode($product['picture']) ?>" alt="Product Image" height="100" /></td>
-        <td><?= htmlspecialchars($product['description']) ?></td>
+        <td><?php echo htmlspecialchars($product['name']); ?> ($<?php echo htmlspecialchars($product['price']); ?>)</td>
+        <td><img src="data:image/jpeg;base64,<?php echo base64_encode($product['picture']); ?>" alt="Product Image" height="100" /></td>
+        <td><?php echo htmlspecialchars($product['description']); ?></td>
         <td>
             <form method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $product['id'] ?>">
-                <input type="text" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
-                <input type="text" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
-                <input type="text" name="description" value="<?= htmlspecialchars($product['description']) ?>" required>
+                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                <input type="text" name="name" value="<?php echo htmlspecialchars($product['name']); ?>" required>
+                <input type="text" name="price" value="<?php echo htmlspecialchars($product['price']); ?>" required>
+                <input type="text" name="description" value="<?php echo htmlspecialchars($product['description']); ?>" required>
                 <input type="file" name="picture" required>
                 <button type="submit" name="update">Update</button>
             </form>
         </td>
         <td>
             <form method="post">
-                <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                 <button type="submit" name="delete">Delete</button>
             </form>
         </td>
