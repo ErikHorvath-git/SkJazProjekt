@@ -53,4 +53,3 @@ PHP for server-side scripting.
 MySQL for database management.
 FontAwesome for icons.
 
-Written by ChatGPT (just README was written by ChatGPT)
